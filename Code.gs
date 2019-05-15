@@ -9,6 +9,17 @@ function onOpen(e) {
   .addToUi();
 }
 
+function findSheetData(sheetNameSel){
+  var ss = SpreadsheetApp.openById('1kBgTMLpmCgkltBuuDJDA1F0p-G8-OY-K96621FU4LOQ');
+  var sheet = ss.getSheetByName(sheetNameSel);
+  if(sheet != null){
+    var data = sheet.getDataRange().getValues();
+    Logger.log(data);
+    return {'success':true, 'sheetNameSel':sheetNameSel , 'data':data};
+  }
+  return {'success':false, 'sheetNameSel':sheetNameSel};
+}
+
 function showDashboard(){
   var ss = SpreadsheetApp.openById('1kBgTMLpmCgkltBuuDJDA1F0p-G8-OY-K96621FU4LOQ');
   var sheets = ss.getSheets();
